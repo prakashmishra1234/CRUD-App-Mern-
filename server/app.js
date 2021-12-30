@@ -51,6 +51,18 @@ app.post('/students', (req, res)=> {
     })
 })
 
+app.delete('/students/:id', (req, res) => {
+    const id = req.params.id
+    student.remove({_id:id}, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send('Error Occured')
+        }else{
+            res.status(200).json({msg: "Successfully Deleted"});
+        }
+    })
+})
+
 //server
 app.listen(5000, ()=>{
     console.log('server is connected to port:5000')
