@@ -63,6 +63,22 @@ app.delete('/students/:id', (req, res) => {
     })
 })
 
+app.put('/students/:id', (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const place = req.body.place;
+    const id = req.params.id;
+    student.updateOne({_id:id}, {$set: {firstname:firstname, lastname:lastname, place:place}})
+    .then(result=>{
+        console.log(result);
+        res.status(200).json({msg: "Updated Successfully"});
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({msg: "Error occured"});
+    })
+})
+
 //server
 app.listen(5000, ()=>{
     console.log('server is connected to port:5000')
