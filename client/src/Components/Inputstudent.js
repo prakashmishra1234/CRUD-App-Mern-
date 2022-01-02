@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from "axios";
+import team from "../team.png"
+
 class InputStudent extends React.Component
 {
     state = {
@@ -13,20 +16,31 @@ class InputStudent extends React.Component
         this.setState({[e.target.name] : e.target.value})
     }
 
+    handleSubmit = () => {
+        if(this.state.firstname !== "" && this.state.lastname !== "", this.state.place !== "")
+        {
+            axios.post('http://localhost:5000/students', this.state)
+            .then(res=>{
+                console.log('Successfully Posted');
+                this.setState({firstname:"", lastname:"", place:""});
+            })
+        }
+    }
+
     render()
     {
         return(
             <div class="row text-center">
                 <div class="col-md-4">
-                    <form>
-                        <input onChange={(e)=> this.handlechange(e)} name="firstname" value={this.state.firstname} style={{fontFamily:'cursive,sans-serif,Gugi', borderRadius:'10px', marginLeft:'50px', marginTop:"20px"}} placeholder='First Name' class="form-control"/>
-                        <input onChange={(e)=> this.handlechange(e)} name="lastname" value={this.state.lastname} style={{fontFamily:'cursive,sans-serif,Gugi', borderRadius:'10px', marginLeft:'50px', marginTop:"20px"}} placeholder='Last Name' class="form-control"/>
-                        <input onChange={(e)=> this.handlechange(e)} name="place" value={this.state.place} style={{fontFamily:'cursive,sans-serif,Gugi', borderRadius:'10px',marginLeft:'50px', marginTop:"20px"}}placeholder='Place' class="form-control"/>
+                    <form onSubmit={()=> this.handleSubmit()}>
+                        <input required onChange={(e)=> this.handlechange(e)} name="firstname" value={this.state.firstname} style={{fontSize:"19px",fontFamily:'cursive,sans-serif,Gugi', borderRadius:'10px', marginLeft:'50px', marginTop:"20px"}} placeholder='First Name' class="form-control"/>
+                        <input required onChange={(e)=> this.handlechange(e)} name="lastname" value={this.state.lastname} style={{fontSize:"19px",fontFamily:'cursive,sans-serif,Gugi', borderRadius:'10px', marginLeft:'50px', marginTop:"20px"}} placeholder='Last Name' class="form-control"/>
+                        <input required onChange={(e)=> this.handlechange(e)} name="place" value={this.state.place} style={{fontSize:"19px",fontFamily:'cursive,sans-serif,Gugi', borderRadius:'10px',marginLeft:'50px', marginTop:"20px"}}placeholder='Place' class="form-control"/>
                         <button style={{borderRadius:'10px',fontSize:"19px",fontFamily:'cursive,sans-serif,Gugi',outline:'none',color:'white',backgroundColor:"#000066",marginLeft:'50px', marginTop:"20px", width:'435px'}} class="btn">CREATE</button>
                     </form>
                 </div>
-                <div >
-
+                <div class="col-md-8">
+                    <img src={team}/>
                 </div>
             </div>
         )
