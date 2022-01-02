@@ -1,10 +1,14 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import InputStudent from './Components/Inputstudent';
+import Liststudent from './Components/ListStudent';
 
 function App() {
   return (
-    <div className="App">
-        <h1>Welcome To My Channel</h1>
+    <div>
+        <InputStudent />
+        <Liststudent />
     </div>
   );
 }
