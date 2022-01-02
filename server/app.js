@@ -68,7 +68,7 @@ app.put('/students/:id', (req, res) => {
     const lastname = req.body.lastname;
     const place = req.body.place;
     const id = req.params.id;
-    student.updateOne({_id:id}, {$set: {firstname:firstname, lastname:lastname, place:place}})
+    student.updateOne ({_id:id}, {$set: {firstname:firstname, lastname:lastname, place:place}})
     .then(result=>{
         console.log(result);
         res.status(200).json({msg: "Updated Successfully"});
