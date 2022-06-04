@@ -5,6 +5,7 @@ const cors = require("cors");
 //const bodyparser = require('body-parser');
 const student = require("./models/students");
 const app = express();
+const path = require("path");
 
 //db connection
 mongoose.Promise = global.Promise;
@@ -19,6 +20,11 @@ mongoose.connection.on("error", () => {
 //middlewares
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+});
 
 //routes
 app.get("/", (req, res) => {
@@ -85,6 +91,6 @@ app.put("/students/:id", (req, res) => {
 });
 
 //server
-app.listen(process.env.DB_URI, () => {
+app.listen(process.env.PORT, () => {
   console.log("server is connected");
 });

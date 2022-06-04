@@ -6,7 +6,7 @@
   "homepage": "https://prakashmishra1234-students.herokuapp.com",
   "scripts": {
     "start": "nodemon app.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix client && npm run build --prefix client"
   },
     "keywords": [
     "example",
