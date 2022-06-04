@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://prakashmishra1234-students.herokuapp.com",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
   },
+    "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "Prakash Mishra",
   "license": "ISC",
   "dependencies": {
